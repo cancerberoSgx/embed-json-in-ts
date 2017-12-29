@@ -1,0 +1,23 @@
+{
+  "name": "embed-json-in-ts",
+  "version": "1.0.0",
+  "description": "",
+  "main": "src/tool.js",
+  "bin": "src/index.js",
+  "dependencies": {
+    "glob": "^7.1.2",
+    "json2ts": "^0.0.7",
+    "shelljs": "^0.7.8",
+    "yargs-parser": "^8.0.0"
+  },
+  "devDependencies": {
+    "jasmine": "^2.8.0",
+    "typescript": "^2.6.2"
+  },
+  "scripts": {
+    "test": "node node_modules/jasmine/bin/jasmine"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC"
+}
