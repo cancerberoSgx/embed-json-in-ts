@@ -3,6 +3,7 @@ const shell = require('shelljs')
 const path = require('path')
 const glob = require('glob').sync
 const json2ts = require('json2ts')
+const tool = require('./index')
 
 function main () {
   if (!args.input) {
@@ -10,7 +11,7 @@ function main () {
     process.exit(1)
   }
 
-  let config = { input }
+  let config = { input: args.input }
   tool(config)
 }
 main ()
