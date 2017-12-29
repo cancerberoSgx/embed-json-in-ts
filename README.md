@@ -1,20 +1,19 @@
-embed json files data from local files and easy typescript import and usage
-
-Imagine you have a project with these two files, a typescript that loads a json file. As a TypeScript developer I want to easily import that json object from my code and make sure it get's embed in the typescript compiler option (so I can bundle its content)
-
- - src/index.ts
- - src/data1.json
-
- I want to embed the content of data1.json in my typescript program as a normal module that I can import: one of the generated .js files by the typescript compiler
+[![Build Status](https://travis-ci.org/cancerberoSgx/embed-json-in-ts.png?branch=master)](https://travis-ci.org/cancerberoSgx/embed-json-in-ts)
+[![Dependencies](https://david-dm.org/cancerberosgx/embed-json-in-ts.svg)](https://david-dm.org/cancerberosgx/embed-json-in-ts)
 
 
-so I use the command: 
+
+JSON pre-processing tool for easily convert JSON files into TypeScript modules for easy importing and embedding. 
+
+Problem to solve: **As a TypeScript developer I want to import the data inside a .json local file naturally from my TypeScript code**. Also I want to make sure it get's embedded in the output (so I can bundle its content)
+
+So I use the command `embed-json-in-ts` like this: 
 
 ```sh
 embed-json-in-ts --input src/*.json
 ```
 
-That generates data1.ts file ready to be used in your index.ts: 
+That generates `data1.ts` file ready to be used in your index.ts: 
 
 ```typescript
 import {data1} from './data1'
@@ -34,7 +33,7 @@ You can start using this by instructing your developer tools to invoke `embed-js
 
 # Use cases
 
- * Simulate a small static file server serving files from a single service/entrypoint. dir with .js, .css compresses as json object and embeded in the output code in a browser or any engine without fs. 
+ * Simulate a small static file server serving files from a single service/entrypoint. directory with .js, .css serialized as json ts module and embedded in output to run in browser or other
 
  * compile handlebars templates and embed in bundle so can render in browser. in this case template compilation into a json is not responsibility of this project - just the support for importing and embedding: 
  ```javascript
