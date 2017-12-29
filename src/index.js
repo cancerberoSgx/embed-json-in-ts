@@ -1,4 +1,3 @@
-
 const shell = require('shelljs')
 const path = require('path')
 const glob = require('glob').sync
@@ -23,11 +22,11 @@ function tool (config) {
         `
 export var ${simpleFilename}:${interfaceName} = ${jsonStr};
 `
-
-      shell.ShellString(result).to(destFile)
       const destFile = path.dirname(file) + '/' + simpleFilename + '.ts'
+      shell.ShellString(result).to(destFile)
+      console.log('Generated ' + destFile)
     } catch (ex) {
-      console.log('Ignoring file ' + file + ' since is not valid JSON')
+      console.log('Ignoring file ' + file + ' since is not valid JSON. Reason', ex, ex.stack)
     }
   })
 }

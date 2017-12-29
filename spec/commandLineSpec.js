@@ -6,7 +6,7 @@ describe('command line', () => {
     shell.rm('-rf', './spec/assets/example/data1.ts')
 
     expect(
-      shell.exec('node src/cli --input ./spec/example/**/*.json').code
+      shell.exec('node src/cli --input ./spec/assets/example/**/*.json').code
     ).toBe(0)
 
     expect(
