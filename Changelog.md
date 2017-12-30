@@ -4,3 +4,5 @@
  * npm
 
 ## 0.0.2
+
+ * better docs

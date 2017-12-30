@@ -8,34 +8,47 @@ Have a `data/data1.json` file in the same folder as your .ts sources and just lo
 
 ```typescript
 import {data1} from './data/data1'
-console.log(data1.persons[0].name) // no problems with tsc - data1 has a type :)
+console.log(data1.persons[0].name) // no problems with types - data1 is well described by a typescript interface :)
 ```
+
+**Problem to solve**: As a TypeScript developer I want to import the data inside a .json local file naturally from my TypeScript code. Also I want to make sure it get's embedded in the output (so I can bundle its content)
 
 `embed-json-in-js` is a JSON pre-processing tool that convert .json files into real TypeScript modules for easy importing and embedding. 
 
-Problem to solve: **As a TypeScript developer I want to import the data inside a .json local file naturally from my TypeScript code**. Also I want to make sure it get's embedded in the output (so I can bundle its content)
 
-So I use the command `embed-json-in-ts` like this: 
+# Install and Use in Command Line
+
+Install:
 
 ```sh
-embed-json-in-ts --input src/**.json
+npm install -g embed-json-in-ts
 ```
 
-That generates `data1.ts` file ready to be used in your index.ts as in : 
-```typescript
-import {data1} from './data/data1'
-console.log(data1.persons[0].name) // no problems with tsc - data1 has a type :)
+Use:
+```sh
+embed-json-in-ts --input src/**/*.json
 ```
 
-The returned object is already "typed", so user don't have to cast and have full type-checking / auto-completion ( thanks to json2ts)
+# Install and use in node js project
 
-# Using it in typescript projects
+```sh
+npm install --save-dev embed-json-in-ts
+```
 
-You can start using this by instructing your developer tools to invoke `embed-json-in-ts` before `tsc`:
+Use it in your build scripts gulpfile or whatever your build system:
+
+```javascript
+var tool = require('embed-json-in-ts')
+tool({input: 'src/**/*.json'})
+```
+
+# Integrating in existing TypeScript porjects
+
+Basically you want to call embed-json-in-ts before the typescript compiler `tsc` for example in package.json:
 
 ```
 "scripts": {
-  "build": "node node_modules/embed-json-in-ts/src/index --input src/**/data/**/*.json && node node_modules/typescript/bin/tsc",
+  "build": "node node_modules/embed-json-in-ts/src/cli --input src/**/data/**/*.json && node node_modules/typescript/bin/tsc",
 ```
 
 # Use cases
@@ -43,8 +56,8 @@ You can start using this by instructing your developer tools to invoke `embed-js
  * Simulate a small static file server serving files from a single service/entrypoint. directory with .js, .css serialized as json ts module and embedded in output to run in browser or other
 
  * compile handlebars templates and embed in bundle so can render in browser. in this case template compilation into a json is not responsibility of this project - just the support for importing and embedding: 
- 
- ```javascript
+
+```javascript
 let data = {templates: {}}
 shell.ls('templates/*.hbs').forEach((file)=>{
   data.templates[file] = handlebars(shell.cat(file))
@@ -52,9 +65,9 @@ shell.ls('templates/*.hbs').forEach((file)=>{
 fs.writeFileSync(JSON.stringify(data).to('src/templates.json')
 embedJsonInTs({input: 'src/templates.json'})
 shell.exec('tsc')
- ```
+```
 
 
 # TODO
 
- * get input from given tsconfig.json file (current one - since this is a ts project should have one)
+ * get input from given `tsconfig.json` file (current one - since this is a ts project should have one)

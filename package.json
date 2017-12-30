@@ -1,6 +1,6 @@
 {
   "name": "embed-json-in-ts",
-  "version": "1.0.0",
+  "version": "0.0.2",
   "description": "",
   "main": "src/tool.js",
   "bin": "src/index.js",
