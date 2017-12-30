@@ -1,0 +1,21 @@
+{
+  "name": "project-watch-handlebars-test1",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "embed-json-in-ts": "^1.0.0",
+    "gulp": "^3.9.1",
+    "gulp-watch": "^4.3.11",
+    "handlebars": "^4.0.11",
+    "jasmine": "^2.8.0",
+    "shelljs": "^0.7.8",
+    "typescript": "^2.6.2"
+  }
+}

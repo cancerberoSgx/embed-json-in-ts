@@ -35,14 +35,14 @@ embed-json-in-ts --input src/**/*.json
 npm install --save-dev embed-json-in-ts
 ```
 
-Use it in your build scripts gulpfile or whatever your build system:
+Use it in your build scripts `gulpfile.js` or whatever your build system:
 
 ```javascript
 var tool = require('embed-json-in-ts')
 tool({input: 'src/**/*.json'})
 ```
 
-# Integrating in existing TypeScript porjects
+# Integrating in existing TypeScript projects
 
 Basically you want to call embed-json-in-ts before the typescript compiler `tsc` for example in package.json:
 

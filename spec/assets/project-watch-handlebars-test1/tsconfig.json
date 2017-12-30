@@ -1,0 +1,10 @@
+{
+    "compilerOptions": {
+      "outDir": "output",
+      
+      "removeComments": falseW
+    }
+    ,"include": [
+        "src"
+    ]
+  }

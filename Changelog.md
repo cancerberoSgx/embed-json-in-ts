@@ -6,3 +6,6 @@
 ## 0.0.2
 
  * better docs
+ * fix require npm install issue
+
+## 0.0.3
