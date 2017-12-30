@@ -4,28 +4,33 @@ const shell = require('shelljs')
 const handlebars = require('handlebars')
 const glob = require('glob').sync
 const json2ts = require('embed-json-in-ts')
+const path = require('path')
+
+const templateJsonOutput = 'src/templates/templates.json'
+const templatesGlob = 'src/**/*.hbs'
 
 var templates = {}
-const templatesGlob = 'src/**/*.hbs'
-const templateJsonOutput = 'src/templates/templates.json'
 
-gulp.task('default', () => {
-  // compile all first
-  glob(templatesGlob).forEach(file => {
-    templates[file] = handlebars.compile(shell.cat(file).toString()).toString()
-  })
-
+gulp.task('dev', ['compile'], () => {
   console.log('Watching your template files...')
   watch(templatesGlob, file => {
-    // console.log(file.path)
-    templates[file.path] = handlebars.compile(shell.cat(file.path).toString()).toString()
-    shell.ShellString(JSON.stringify(templates)).to(templateJsonOutput)
-    json2ts({input: templateJsonOutput})
-    shell.exec('node node_modules/typescript/bin/tsc')
+      const templateName = path.basename(file.path, path.extname(file.path))
+      templates[templateName] = handlebars.precompile(shell.cat(file.path).toString()).toString()
+      shell.ShellString(JSON.stringify(templates)).to(templateJsonOutput)
+      json2ts({input: templateJsonOutput})
+      shell.exec('node node_modules/typescript/bin/tsc')   
   })
 
-  watch('output/**/*.js', file => {
-    console.log(`File changed. Uploading File: ${file.path} to the cloud ...`)
-    // TODO: do the uploading of .js or bundle.js
+})
+
+gulp.task('compile', ()=>{
+  
+  // compile all 
+  glob(templatesGlob).forEach(file => {
+    const templateName = path.basename(file, path.extname(file))
+    templates[templateName] = handlebars.precompile(shell.cat(file).toString()).toString()
   })
+  shell.ShellString(JSON.stringify(templates)).to(templateJsonOutput)
+  json2ts({input: templateJsonOutput})
+  shell.exec('node node_modules/typescript/bin/tsc')
 })
