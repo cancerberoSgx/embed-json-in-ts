@@ -1,7 +1,7 @@
 const shell = require('shelljs')
 const tool = require('../src/index.js')
 
-xdescribe('example projects', () => {
+describe('example projects', () => {
   it('project1', () => {
     var pwd = shell.pwd()
     shell.cd('spec/assets/project-watch-handlebars-test1')

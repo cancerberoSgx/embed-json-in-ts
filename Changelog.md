@@ -13,3 +13,7 @@
  * npm install -g issues
 
 ## 0.0.5
+
+ * --mode=fs2json
+
+ ## 0.0.6

@@ -26,7 +26,7 @@ npm install -g embed-json-in-ts
 
 Use:
 ```sh
-embed-json-in-ts --input src/**/*.json
+embed-json-in-ts --input="src/**/*.json"
 ```
 
 # Install and use in node js project
@@ -51,11 +51,22 @@ Basically you want to call embed-json-in-ts before the typescript compiler `tsc`
   "build": "node node_modules/embed-json-in-ts/src/cli --input src/**/data/**/*.json && node node_modules/typescript/bin/tsc",
 ```
 
-# Use cases
+# folder to json tool
 
- * Simulate a small static file server serving files from a single service/entrypoint. directory with .js, .css serialized as json ts module and embedded in output to run in browser or other
+it will generate a .json file containing a folder contents and then generate the .ts from that: 
+ 
+ ```sh
+embed-json-in-ts --mode=fs2json --input="folder/**/*" --output="./data/folder.json"
+```
 
- * (done see spec/assets/project-watch-handlebars-test1) - gulp watch, handlebars templates imported using json. in this case template compilation into a json is not responsibility of this project - just the support for importing and embedding. 
+and then you are ready to `import 
+import {folder} from './data/folder'
+
+
+# Project example: 
+
+ *see spec/assets/project-watch-handlebars-test1 
+ - gulp watch, handlebars templates imported using json. in this case template compilation into a json is not responsibility of this project - just the support for importing and embedding. 
 
 # TODO
 
