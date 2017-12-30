@@ -5,6 +5,7 @@
   "main": "src/index.js",
   "bin": "src/cli.js",
   "dependencies": {
+    "fs-to-json": "0.0.4",
     "glob": "^7.1.2",
     "json-fs": "^1.1.1",
     "json2ts": "^0.0.7",

@@ -1,9 +1,9 @@
 {
     "compilerOptions": {
       "outDir": "output",
-      "removeComments": false,
-      "outFile": "bundle2.js",
-      "module": "system"
+      "removeComments": false
+      // "outFile": "bundle2.js",
+      // "module": "system"
     },
     "include": [
         "src"

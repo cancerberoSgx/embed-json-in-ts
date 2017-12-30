@@ -1,7 +1,7 @@
 const shell = require('shelljs')
 const tool = require('../src/index.js')
 
-describe('command line', () => {
+xdescribe('command line', () => {
   it('command line simple 1', () => {
     shell.rm('-rf', './spec/assets/example/*.js')
     shell.rm('-rf', './spec/assets/example/data1.ts')
