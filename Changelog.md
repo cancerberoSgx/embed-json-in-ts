@@ -8,4 +8,8 @@
  * better docs
  * fix require npm install issue
 
-## 0.0.3
+## 0.0.3 - 0.0.4
+
+ * npm install -g issues
+
+## 0.0.5

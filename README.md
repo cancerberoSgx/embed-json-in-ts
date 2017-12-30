@@ -55,18 +55,7 @@ Basically you want to call embed-json-in-ts before the typescript compiler `tsc`
 
  * Simulate a small static file server serving files from a single service/entrypoint. directory with .js, .css serialized as json ts module and embedded in output to run in browser or other
 
- * compile handlebars templates and embed in bundle so can render in browser. in this case template compilation into a json is not responsibility of this project - just the support for importing and embedding: 
-
-```javascript
-let data = {templates: {}}
-shell.ls('templates/*.hbs').forEach((file)=>{
-  data.templates[file] = handlebars(shell.cat(file))
-})
-fs.writeFileSync(JSON.stringify(data).to('src/templates.json')
-embedJsonInTs({input: 'src/templates.json'})
-shell.exec('tsc')
-```
-
+ * (done see spec/assets/project-watch-handlebars-test1) - gulp watch, handlebars templates imported using json. in this case template compilation into a json is not responsibility of this project - just the support for importing and embedding. 
 
 # TODO
 

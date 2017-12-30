@@ -24,10 +24,15 @@ export var ${simpleFilename}:${interfaceName} = ${jsonStr};
 `
       const destFile = path.dirname(file) + '/' + simpleFilename + '.ts'
       shell.ShellString(result).to(destFile)
-      console.log('Generated ' + destFile)
+      if(config.debug){
+        console.log('Generated ' + destFile)
+      }
     } catch (ex) {
-      console.log('Ignoring file ' + file + ' since is not valid JSON. Reason', ex, ex.stack)
+      if(config.debug){
+        console.log('Ignoring file ' + file + ' since is not valid JSON. Reason', ex, ex.stack)
+      }
     }
   })
 }
+
 module.exports = tool

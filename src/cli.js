@@ -1,8 +1,6 @@
+#!/usr/bin/env node
+
 const args = require('yargs-parser')(process.argv.slice(2))
-const shell = require('shelljs')
-const path = require('path')
-const glob = require('glob').sync
-const json2ts = require('json2ts')
 const tool = require('./index')
 
 function main () {
@@ -11,7 +9,9 @@ function main () {
     process.exit(1)
   }
 
-  let config = { input: args.input }
+  let config = { input: args.input, debug: args.debug }
+
   tool(config)
 }
-main ()
+
+main()
