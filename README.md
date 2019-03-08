@@ -46,7 +46,7 @@ tool({input: 'src/**/*.json'})
 
 Basically you want to call embed-json-in-ts before the typescript compiler `tsc` for example in package.json:
 
-```
+```json
 "scripts": {
   "build": "node node_modules/embed-json-in-ts/src/cli --input src/**/data/**/*.json && node node_modules/typescript/bin/tsc",
 ```
@@ -59,9 +59,11 @@ it will generate a .json file containing a folder contents and then generate the
 embed-json-in-ts --mode=fs2json --input="folder/**/*" --output="./data/folder.json"
 ```
 
-and then you are ready to `import 
-import {folder} from './data/folder'
+and then you are ready to:
 
+```ts
+import {folder} from './data/folder'
+```
 
 # Project example: 
 

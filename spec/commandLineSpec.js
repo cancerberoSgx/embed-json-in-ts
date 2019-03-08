@@ -12,7 +12,7 @@ describe('command line', () => {
 
     expect(
       shell.exec(
-        'node node_modules/typescript/bin/tsc ./spec/assets/example/*.ts'
+        'npx tsc ./spec/assets/example/*.ts'
       ).code
     ).toBe(0)
     let p = shell.exec('node ./spec/assets/example/index.js')
