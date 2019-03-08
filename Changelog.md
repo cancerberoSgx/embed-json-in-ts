@@ -26,5 +26,6 @@
 
   * outputFile for single matches
   * --mode string - to pack a file as a string variable
+  * fix output for other modes
 
 ## 0.0.8

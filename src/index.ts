@@ -24,8 +24,7 @@ export function tool(config: Config) {
     fs2json(config)
       .then(() => {
         config.input = config.output!
-        delete config.output
-        base(config)
+        base({...config, output: undefined})
         process.exit(0)
       })
       .catch((ex: any) => {
@@ -42,6 +41,7 @@ function base(config: Config) {
   const files = glob(config.input)
   files.forEach(file => {
     try {
+      const outputFolder = config.output || path.dirname(file)
       const jsonStr = config.mode === 'string' ? JSON.stringify(shell.cat(file).toString()) : shell.cat(file).toString()
       let result = config.mode === 'string' ? '' : json2ts.convert(jsonStr)
       const simpleFilename = path.basename(file, config.preserveExtension ? undefined : path.extname(file)).replace(/[^a-z0-9_]/gi, '_')
@@ -54,7 +54,7 @@ function base(config: Config) {
         `
 export const ${simpleFilename}: ${interfaceName} = ${jsonStr};
 `
-      const destFile = files.length===1 && config.outputFile || path.dirname(file) + '/' + simpleFilename + '.ts'
+      const destFile = files.length===1 && config.outputFile || outputFolder + '/' + simpleFilename + '.ts'
       writeFileSync(destFile, result)
       if (config.debug) {
         console.log('Generated ' + destFile)
