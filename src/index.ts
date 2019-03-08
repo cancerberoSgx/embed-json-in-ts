@@ -3,32 +3,58 @@ import path from 'path'
 const json2ts = require('json2ts')
 import { sync as glob } from 'glob'
 import { writeFileSync } from 'fs';
+const fs2json = require('fs-to-json')
 
 export interface Config {
   /** glob file pattern referencing target json files we want to pack */
   input: string
-  mode?: 'normal'|'fs2json'
+  mode?: 'normal' | 'fs2json' | 'string'
   debug?: boolean
-  output: string
-  transformFileName? : (f:string)=>string
+  /** in case only one file is matched user can specify an output file path */
+  outputFile?: string
+  /** keep original file extension in emitted variable name */
+  preserveExtension?: boolean
+  transformFileName?: (f: string) => string
+  output?:string
 }
 
 export function tool(config: Config) {
-  glob(config.input).forEach(file => {
+  config.transformFileName = config.transformFileName || (file => file.replace(/[^\w]/gi, '_'))
+  if (config.mode === 'fs2json') {
+    fs2json(config)
+      .then(() => {
+        config.input = config.output!
+        delete config.output
+        base(config)
+        process.exit(0)
+      })
+      .catch((ex: any) => {
+        console.log('ERROR', ex)
+        process.exit(1)
+      })
+  } 
+  else {
+    base(config)
+  }
+}
+
+function base(config: Config) {
+  const files = glob(config.input)
+  files.forEach(file => {
     try {
-      const jsonStr = shell.cat(file).toString()
-      let result = json2ts.convert(jsonStr)
-      const simpleFilename = path.basename(file, path.extname(file))
-      const interfaceName = simpleFilename + '_definition'
+      const jsonStr = config.mode === 'string' ? JSON.stringify(shell.cat(file).toString()) : shell.cat(file).toString()
+      let result = config.mode === 'string' ? '' : json2ts.convert(jsonStr)
+      const simpleFilename = path.basename(file, config.preserveExtension ? undefined : path.extname(file)).replace(/[^a-z0-9_]/gi, '_')
+      const interfaceName = config.mode === 'string' ? 'string' : simpleFilename + '_definition'
       result = result.replace(
         'export interface RootObject',
         `export interface ${interfaceName}`
       )
       result +=
         `
-export var ${simpleFilename}:${interfaceName} = ${jsonStr};
+export const ${simpleFilename}: ${interfaceName} = ${jsonStr};
 `
-      const destFile = path.dirname(file) + '/' + simpleFilename + '.ts'
+      const destFile = files.length===1 && config.outputFile || path.dirname(file) + '/' + simpleFilename + '.ts'
       writeFileSync(destFile, result)
       if (config.debug) {
         console.log('Generated ' + destFile)

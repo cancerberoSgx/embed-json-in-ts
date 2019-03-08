@@ -5,6 +5,9 @@
   "main": "dist/src/index.js",
   "typings": "dist/src/index.d.ts",
   "bin": "dist/src/cli.js",
+  "scripts": {
+    "test": "rm -rf dist && npx tsc && cp -r spec dist && cd dist && npx jasmine"
+  },
   "dependencies": {
     "fs-to-json": "0.0.4",
     "glob": "^7.1.2",
@@ -19,10 +22,7 @@
     "jasmine": "^2.8.0",
     "typescript": "^3.3.3"
   },
-  "scripts": {
-    "test": "rm -rf dist && npx tsc && cp -r spec dist && cd dist && npx jasmine"
-  },
-  "keywords": [],
+  "keywords": ["TypeScript", "embed", "pack", "bundle", "JSON"],
   "author": "cancerberosgx",
   "license": "MIT"
 }

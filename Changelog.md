@@ -23,3 +23,8 @@
  * simpler tests
 
  ## 0.0.7
+
+  * outputFile for single matches
+  * --mode string - to pack a file as a string variable
+
+## 0.0.8
