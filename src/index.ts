@@ -20,6 +20,7 @@ export interface Config {
 
 export function tool(config: Config) {
   config.transformFileName = config.transformFileName || (file => file.replace(/[^\w]/gi, '_'))
+  config.debug && console.log('starting with config: ', config)
   if (config.mode === 'fs2json') {
     fs2json(config)
       .then(() => {
