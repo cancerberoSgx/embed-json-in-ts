@@ -21,12 +21,15 @@ console.log(data1.persons[0].name) // no problems with types - data1 is well des
 Install:
 
 ```sh
-npm install -g embed-json-in-ts
+npm install embed-json-in-ts
 ```
 
 Use:
 ```sh
-embed-json-in-ts --input="src/**/*.json"
+npx embed-json-in-ts --input="src/**/*.json"
+npx embed-json-in-ts --mode fs2json --input "./data/**/*.json" --output "src/data" --debug
+npx embed-json-in-ts --mode string --input "node_modules/typescript/lib/*.d.ts" --output "./src/typings" --preserveExtension
+
 ```
 
 # Install and use in node js project
