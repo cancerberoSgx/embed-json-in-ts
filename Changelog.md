@@ -17,3 +17,9 @@
  * --mode=fs2json
 
  ## 0.0.6
+
+ * typescript src
+ * named exports
+ * simpler tests
+
+ ## 0.0.7

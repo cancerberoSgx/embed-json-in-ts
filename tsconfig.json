@@ -10,9 +10,6 @@
     "rootDir": ".",
     "esModuleInterop": true,
     "strict": true,
-    
-    // "allowJs": true,
-    // "checkJs": true
     "declaration": true
   },
   "include":["src"],

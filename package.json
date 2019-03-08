@@ -1,6 +1,6 @@
 {
   "name": "embed-json-in-ts",
-  "version": "0.0.2",
+  "version": "0.0.7",
   "description": "Natural way of importing json files from TypeScript",
   "main": "dist/src/index.js",
   "typings": "dist/src/index.d.ts",
