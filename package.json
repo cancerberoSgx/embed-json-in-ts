@@ -1,15 +1,16 @@
 {
   "name": "embed-json-in-ts",
-  "version": "0.0.8",
+  "version": "0.0.9",
   "description": "Natural way of importing json files from TypeScript",
   "main": "dist/src/index.js",
   "typings": "dist/src/index.d.ts",
   "bin": "dist/src/cli.js",
   "scripts": {
-    "test": "rm -rf dist && npx tsc && cp -r spec dist && cd dist && npx jasmine"
+    "test": "rm -rf dist && npx tsc && cp -r spec dist && cd dist && npx jasmine",
+    "prepare": "npx tsc"
   },
   "dependencies": {
-    "fs-to-json": "0.1.9",
+    "fs-to-json": "0.2.0",
     "glob": "^7.1.4",
     "json2ts": "0.0.7",
     "shelljs": "^0.8.3",

@@ -1,0 +1,6 @@
+/spec
+.travis.yml
+*.tgz
+src
+dist/spec
+tsconfig.json
