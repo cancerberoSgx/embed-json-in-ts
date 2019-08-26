@@ -9,9 +9,12 @@
     "outDir": "./dist",
     "rootDir": ".",
     "esModuleInterop": true,
-    "strict": true,
-    "declaration": true
+    "strict": false,
+    "sourceMap": true,
+    "declaration": true,
+    "skipLibCheck": true,
+    "skipDefaultLibCheck": true
   },
   "include":["src"],
-  "exclude": ["spec"]
+  "exclude": ["spec", "dist", "node_modules"]
 }

@@ -3,7 +3,7 @@ import path from 'path'
 const json2ts = require('json2ts')
 import { sync as glob } from 'glob'
 import { writeFileSync } from 'fs';
-const fs2json = require('fs-to-json')
+import {fs2json} from 'fs-to-json'
 
 export interface Config {
   /** glob file pattern referencing target json files we want to pack */
@@ -44,6 +44,8 @@ function base(config: Config) {
     try {
       const outputFolder = config.output || path.dirname(file)
       const jsonStr = config.mode === 'string' ? JSON.stringify(shell.cat(file).toString()) : shell.cat(file).toString()
+// console.log(json2ts);
+      
       let result = config.mode === 'string' ? '' : json2ts.convert(jsonStr)
       const simpleFilename = path.basename(file, config.preserveExtension ? undefined : path.extname(file)).replace(/[^a-z0-9_]/gi, '_')
       const interfaceName = config.mode === 'string' ? 'string' : simpleFilename + '_definition'

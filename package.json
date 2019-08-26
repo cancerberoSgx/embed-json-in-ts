@@ -9,20 +9,26 @@
     "test": "rm -rf dist && npx tsc && cp -r spec dist && cd dist && npx jasmine"
   },
   "dependencies": {
-    "fs-to-json": "0.0.4",
-    "glob": "^7.1.2",
+    "fs-to-json": "0.1.9",
+    "glob": "^7.1.4",
     "json2ts": "0.0.7",
-    "shelljs": "^0.7.8",
-    "yargs-parser": "^8.0.0"
+    "shelljs": "^0.8.3",
+    "yargs-parser": "^13.1.1"
   },
   "devDependencies": {
     "@types/glob": "^7.1.1",
-    "@types/node": "^11.10.5",
-    "@types/shelljs": "^0.8.3",
-    "jasmine": "^2.8.0",
-    "typescript": "^3.3.3"
+    "@types/node": "^12.7.2",
+    "@types/shelljs": "^0.8.5",
+    "jasmine": "^3.4.0",
+    "typescript": "^3.5.3"
   },
-  "keywords": ["TypeScript", "embed", "pack", "bundle", "JSON"],
+  "keywords": [
+    "TypeScript",
+    "embed",
+    "pack",
+    "bundle",
+    "JSON"
+  ],
   "author": "cancerberosgx",
   "license": "MIT"
 }
