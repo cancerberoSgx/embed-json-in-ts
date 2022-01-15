@@ -12,7 +12,7 @@
   "license": "ISC",
   "devDependencies": {
     "@types/handlebars": "^4.0.36",
-    "shelljs": "^0.7.8",
+    "shelljs": "^0.8.5",
     "handlebars": "^4.0.11",
     "jasmine": "^2.8.0",
     "typescript": "^3.3.2"
